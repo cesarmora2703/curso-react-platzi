@@ -10,14 +10,29 @@ const defaultTodos = [
   { text: 'Tomar el cusros de introducción Reac.js', completed: false },
   { text: 'Llorar con la Llorona', completed: false },
   { text: 'Tralalalala', completed: false },
+  { text: 'Escribir estados extendidos', completed: true },
 ];
 
 function App() {
+  const [todos, setTodos] = React.useState(defaultTodos);
+  const [searchValue, setSearchValue] = React.useState('');
+  console.log("Se ha buscado: " + searchValue)
+
+  const completedTodos = todos.filter(
+    todo => !!todo.completed
+  ).length;
+  const totalTodos = todos.length;
+
   return (
     <>
 
-      <TodoCounter completed={16} total={25} />
-      <TodoSearch />
+      <TodoCounter
+        completed={completedTodos}
+        total={totalTodos} />
+      <TodoSearch
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+      />
 
       <TodoList>
         {defaultTodos.map(todo => (
