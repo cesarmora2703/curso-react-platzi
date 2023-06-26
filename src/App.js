@@ -7,7 +7,7 @@ import { CreateTodoButton } from './CreateTodoButton';
 
 const defaultTodos = [
   { text: 'Cortar cebolla', completed: true },
-  { text: 'Tomar el cusros de introducción Reac.js', completed: false },
+  { text: 'Tomar el cursos de introducción React.js', completed: false },
   { text: 'Llorar con la Llorona', completed: false },
   { text: 'Tralalalala', completed: false },
   { text: 'Escribir estados extendidos', completed: true },
@@ -23,13 +23,14 @@ function App() {
   ).length;
   const totalTodos = todos.length;
 
-  const todosFiltered = defaultTodos.filter(
-    todo => todo.text.toLowerCase().includes(searchValue.toLowerCase())
+  const searchedTodos = defaultTodos.filter(
+    (todo) => {
+      return todo.text.toLowerCase().includes(searchValue.toLowerCase())
+    }
   );
 
   return (
     <>
-
       <TodoCounter
         completed={completedTodos}
         total={totalTodos} />
@@ -39,7 +40,7 @@ function App() {
       />
 
       <TodoList>
-        {todosFiltered.map(todo => (
+        {searchedTodos.map(todo => (
           <TodoItem
             key={todo.text}
             text={todo.text}
